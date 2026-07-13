@@ -1,0 +1,969 @@
+/* =====================================================================
+   DESIGN SYSTEM — EXTRACTED FROM HERO SECTION
+   =====================================================================
+   This file is the single source of truth for the entire portfolio.
+   Every section, component, and interaction must inherit from here.
+
+   DO NOT define ad-hoc styles in section-specific CSS.
+   DO NOT introduce new colors, radii, shadows, or easing curves.
+   Every visual decision traces back to the Hero.
+   ===================================================================== */
+
+
+/* =====================================================================
+   §1  DESIGN TOKENS
+   ===================================================================== */
+
+:root {
+
+    /* ─────────────────────────────────────────────────────────────────
+       §1.1  COLOR PALETTE
+       Source: Hero background, text, accent, border values
+       Rule: No new colors. Ever. Derive from these.
+       ───────────────────────────────────────────────────────────────── */
+
+    /* Backgrounds — 3-tier surface hierarchy */
+    --color-bg-primary:       #111111;          /* Page background, deepest layer          */
+    --color-bg-secondary:     #171717;          /* Elevated surface, section alternation    */
+    --color-bg-card:          #1D1D1D;          /* Cards, panels, modals                   */
+
+    /* Text — 2-tier hierarchy */
+    --color-text-primary:     #F4F1EB;          /* Headlines, primary content (warm white)  */
+    --color-text-secondary:   #BDB6AA;          /* Body, captions, labels (warm gray)       */
+
+    /* Accent — Muted champagne gold */
+    --color-accent:           #D6A66B;          /* CTAs, highlights, key emphasis           */
+    --color-accent-dim:       rgba(214, 166, 107, 0.15);  /* Accent-tinted backgrounds     */
+    --color-accent-glow:      rgba(214, 166, 107, 0.2);   /* Accent shadow/glow            */
+
+    /* Status — only used for status indicators */
+    --color-status-active:    #4ADE80;          /* "Available" dot, success states          */
+
+    /* Borders & Surfaces */
+    --color-border:           rgba(255, 255, 255, 0.07);  /* Default border (6-8% white)   */
+    --color-border-hover:     rgba(255, 255, 255, 0.12);  /* Hovered border                */
+    --color-border-subtle:    rgba(255, 255, 255, 0.04);  /* Inner highlight / ring         */
+    --color-border-accent:    rgba(214, 166, 107, 0.12);  /* Accent-tinted border           */
+
+    /* Glass surfaces */
+    --color-glass:            rgba(29, 29, 29, 0.65);     /* Floating card glass bg         */
+    --color-glass-nav:        rgba(23, 23, 23, 0.55);     /* Navbar glass bg                */
+    --color-glass-nav-scroll: rgba(23, 23, 23, 0.7);      /* Navbar glass bg (scrolled)     */
+    --color-glass-overlay:    rgba(17, 17, 17, 0.92);     /* Full-screen overlay bg          */
+
+    /* Selection */
+    --color-selection-bg:     rgba(214, 166, 107, 0.3);
+    --color-selection-text:   var(--color-text-primary);
+
+    /* Vignette (warm-tinted, never pure black) */
+    --color-vignette:         rgba(10, 8, 6, 0.45);
+
+
+    /* ─────────────────────────────────────────────────────────────────
+       §1.2  TYPOGRAPHY
+       Source: Hero headline, body, badge, stat, quote, nav, button
+       Rule: Only these 2 font families. Only these scale steps.
+       ───────────────────────────────────────────────────────────────── */
+
+    /* Font Families */
+    --font-heading:   'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-body:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* ── Type Scale (Desktop) ──
+       Display:     clamp(2.6rem, 4.2vw, 4.2rem)   — Hero h1, section hero headlines
+       Heading-1:   clamp(2rem, 3.2vw, 3rem)        — Section headings (h2)
+       Heading-2:   clamp(1.5rem, 2.4vw, 2rem)      — Sub-section headings (h3)
+       Heading-3:   1.3rem                           — Card heading, stat suffix
+       Stat:        2rem                             — Large stat number
+       Card-Number: 1.6rem                           — Floating card number
+       Body:        0.92rem                          — Paragraph text
+       Body-lg:     1.05rem                          — Emphasized body, typed text
+       Body-sm:     0.95rem                          — Static lines, secondary body
+       Nav:         0.82rem                          — Navigation links
+       Button:      0.85rem                          — Button labels
+       Caption:     0.72rem                          — Stat labels, badge text
+       Micro:       0.65rem                          — Quote, tech pills, scroll text
+       Nano:        0.6rem                           — Scroll indicator label
+    */
+
+    --text-display:      clamp(2.6rem, 4.2vw, 4.2rem);
+    --text-heading-1:    clamp(2rem, 3.2vw, 3rem);
+    --text-heading-2:    clamp(1.5rem, 2.4vw, 2rem);
+    --text-heading-3:    1.3rem;
+    --text-stat:         2rem;
+    --text-card-number:  1.6rem;
+    --text-body:         0.92rem;
+    --text-body-lg:      1.05rem;
+    --text-body-sm:      0.95rem;
+    --text-nav:          0.82rem;
+    --text-button:       0.85rem;
+    --text-caption:      0.72rem;
+    --text-micro:        0.65rem;
+    --text-nano:         0.6rem;
+
+    /* Line Heights */
+    --leading-display:   1.14;
+    --leading-heading:   1.2;
+    --leading-body:      1.75;
+    --leading-tight:     1;
+    --leading-normal:    1.6;
+
+    /* Letter Spacing */
+    --tracking-tight:   -0.015em;    /* Display headings                  */
+    --tracking-normal:   0.01em;     /* Body, buttons                     */
+    --tracking-wide:     0.03em;     /* Badge, captions                   */
+    --tracking-wider:    0.08em;     /* Logo                              */
+    --tracking-widest:   0.25em;     /* Section labels, quote             */
+    --tracking-scroll:   0.22em;     /* Scroll indicator                  */
+
+    /* Font Weights
+       300 = Light    (unused in hero, reserved for future emphasis)
+       370 = Thin-Regular (intro paragraph)
+       400 = Regular  (static lines, body)
+       450 = Medium-Light (nav links, stat labels, card labels)
+       500 = Medium   (badge text, tech pills, mobile nav link)
+       550 = Semi     (buttons)
+       600 = SemiBold (typed text, quote, nav CTA, card title, scroll text)
+       700 = Bold     (headline, stat number, card number, logo)
+       800 = ExtraBold (reserved, Playfair Display only)
+    */
+    --weight-light:      300;
+    --weight-thin:       370;
+    --weight-regular:    400;
+    --weight-medium-lt:  450;
+    --weight-medium:     500;
+    --weight-semi:       550;
+    --weight-semibold:   600;
+    --weight-bold:       700;
+    --weight-extrabold:  800;
+
+
+    /* ─────────────────────────────────────────────────────────────────
+       §1.3  SPACING SCALE
+       Source: Hero margins, paddings, gaps
+       Rule: Only use these steps. No magic numbers.
+       ───────────────────────────────────────────────────────────────── */
+
+    --space-2:    2px;
+    --space-3:    3px;
+    --space-4:    4px;
+    --space-6:    6px;
+    --space-7:    7px;
+    --space-8:    8px;
+    --space-9:    9px;
+    --space-10:   10px;
+    --space-12:   12px;
+    --space-14:   14px;
+    --space-16:   16px;
+    --space-18:   18px;
+    --space-20:   20px;
+    --space-22:   22px;
+    --space-24:   24px;
+    --space-28:   28px;
+    --space-30:   30px;
+    --space-32:   32px;
+    --space-36:   36px;
+    --space-40:   40px;
+    --space-48:   48px;
+    --space-56:   56px;
+    --space-64:   64px;
+    --space-80:   80px;
+
+    /* Semantic Spacing */
+    --section-padding-y:       120px;   /* Between sections (vertical)            */
+    --section-padding-y-sm:    80px;    /* Smaller section vertical padding       */
+    --container-max:           1440px;  /* Max content width                      */
+    --container-padding:       80px;    /* Horizontal gutter (desktop)            */
+    --nav-height:              72px;    /* Fixed navbar height reference           */
+    --hero-top-offset:         calc(var(--nav-height) + 60px); /* First section clearance */
+    --grid-gap:                80px;    /* Primary two-column gap                 */
+    --grid-gap-sm:             56px;    /* Reduced column gap (≤1280px)           */
+    --card-padding:            14px 18px; /* Floating card internal padding        */
+    --button-padding:          15px 30px; /* Standard button padding               */
+    --button-padding-sm:       9px 22px;  /* Small button (nav CTA)                */
+    --button-gap:              16px;      /* Space between sibling buttons          */
+    --stat-gap:                32px;      /* Between stat columns                  */
+
+
+    /* ─────────────────────────────────────────────────────────────────
+       §1.4  BORDER RADIUS
+       Source: Hero badge, buttons, cards, portrait, nav, pills
+       Rule: Only these 6 radius steps.
+       ───────────────────────────────────────────────────────────────── */
+
+    --radius-xs:    6px;     /* Tiny elements                             */
+    --radius-sm:    10px;    /* Small cards, mobile nav link               */
+    --radius-md:    16px;    /* Floating cards                             */
+    --radius-lg:    24px;    /* Medium panels                              */
+    --radius-xl:    36px;    /* Portrait frame, large image containers     */
+    --radius-pill:  100px;   /* Buttons, badges, pills, navbar, nav links  */
+
+
+    /* ─────────────────────────────────────────────────────────────────
+       §1.5  SHADOWS & ELEVATION
+       Source: Hero navbar, buttons, cards, portrait
+       Rule: 4 elevation tiers. Always warm-tinted (never pure black).
+       ───────────────────────────────────────────────────────────────── */
+
+    /* Elevation 1 — Subtle (nav CTA, small buttons) */
+    --shadow-sm:
+        0 4px 16px rgba(0, 0, 0, 0.2);
+
+    /* Elevation 2 — Medium (navbar, secondary buttons) */
+    --shadow-md:
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    /* Elevation 3 — Pronounced (floating cards) */
+    --shadow-lg:
+        0 16px 48px -8px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    /* Elevation 4 — Hero (portrait frame, featured elements) */
+    --shadow-xl:
+        0 32px 80px -16px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    /* Accent Glow (primary buttons) */
+    --shadow-accent:
+        0 6px 24px rgba(214, 166, 107, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+    --shadow-accent-hover:
+        0 12px 40px rgba(214, 166, 107, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+    /* Status Dot Glows */
+    --glow-green:  0 0 8px rgba(74, 222, 128, 0.4);
+    --glow-gold:   0 0 8px rgba(214, 166, 107, 0.4);
+
+
+    /* ─────────────────────────────────────────────────────────────────
+       §1.6  GLASS & BLUR
+       Source: Hero navbar, floating cards, mobile menu
+       Rule: 3 blur tiers. Always pair with semi-transparent bg.
+       ───────────────────────────────────────────────────────────────── */
+
+    --blur-sm:    blur(16px);                    /* Subtle glass (reserved)       */
+    --blur-md:    blur(20px);                    /* Floating cards                */
+    --blur-lg:    blur(24px) saturate(1.2);      /* Navbar (default)              */
+    --blur-xl:    blur(32px) saturate(1.4);      /* Navbar (scrolled), overlays   */
+
+
+    /* ─────────────────────────────────────────────────────────────────
+       §1.7  MOTION & EASING
+       Source: Hero transitions, parallax, magnetic, reveal
+       Rule: Only these 4 curves. Never use `linear`.
+       ───────────────────────────────────────────────────────────────── */
+
+    /* Primary — Smooth deceleration (most UI transitions) */
+    --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Secondary — Gentle deceleration (subtler transitions) */
+    --ease-out-quart:  cubic-bezier(0.25, 1, 0.5, 1);
+
+    /* Playful — Slight overshoot (buttons, reveals) */
+    --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Standard — Material Design standard (fades, opacity) */
+    --ease-smooth:     cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ── Duration Scale ──
+       Instant:  0.12s   (parallax transform update)
+       Quick:    0.15s   (magnetic button track)
+       Fast:     0.3s    (icon hover, nav link, logo)
+       Normal:   0.35s   (nav links, card hover, hamburger)
+       Medium:   0.4s    (button transitions, typing fade)
+       Smooth:   0.45s   (CTA button full transition)
+       Slow:     0.5s    (mobile menu, magnetic spring-back)
+       Elegant:  0.6s    (navbar scroll, portrait shadow, mobile inner)
+       Dramatic: 0.8s    (portrait glow intensity)
+       Reveal:   0.9s    (fade-up scroll reveals)
+       Counter:  2.2s    (animated stat counting)
+       Typing-char: 55-90ms  (character-by-character, randomized)
+       Typing-pause: 2400ms  (hold after full word)
+       Typing-fade:  400ms   (fade out before next word)
+    */
+    --duration-instant:   0.12s;
+    --duration-quick:     0.15s;
+    --duration-fast:      0.3s;
+    --duration-normal:    0.35s;
+    --duration-medium:    0.4s;
+    --duration-smooth:    0.45s;
+    --duration-slow:      0.5s;
+    --duration-elegant:   0.6s;
+    --duration-dramatic:  0.8s;
+    --duration-reveal:    0.9s;
+    --duration-counter:   2200ms;
+
+
+    /* ─────────────────────────────────────────────────────────────────
+       §1.8  Z-INDEX SCALE
+       Source: Hero layer stacking order
+       Rule: Only use these named layers.
+       ───────────────────────────────────────────────────────────────── */
+
+    --z-bg-lights:       0;
+    --z-vignette:        1;
+    --z-particles:       2;
+    --z-content:         3;
+    --z-floating-card:   10;
+    --z-scroll-indicator:50;
+    --z-mobile-menu:     999;
+    --z-navbar:          1000;
+    --z-hamburger:       1010;
+    --z-grain:           9999;
+}
+
+
+/* =====================================================================
+   §2  REUSABLE COMPONENT CLASSES
+   =====================================================================
+   Apply these classes directly in HTML to inherit Hero-consistent styles.
+   Every future section uses these — never re-invent.
+   ===================================================================== */
+
+
+/* ─────────────────────────────────────────────────────────────────
+   §2.1  SECTION CONTAINER
+   Usage:  <section class="section"><div class="container">…</div></section>
+   ───────────────────────────────────────────────────────────────── */
+
+.section {
+    position: relative;
+    z-index: var(--z-content);
+    padding: var(--section-padding-y) 0;
+}
+
+.section--no-pad-top    { padding-top: 0; }
+.section--no-pad-bottom { padding-bottom: 0; }
+.section--compact       { padding: var(--section-padding-y-sm) 0; }
+
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   §2.2  SECTION LABEL
+   The tiny uppercase gold text above section headings.
+   Source: Hero .quote element
+   Usage:  <span class="section-label">ABOUT ME</span>
+   ───────────────────────────────────────────────────────────────── */
+
+.section-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: var(--space-18);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   §2.3  TYPOGRAPHY CLASSES
+   Source: Hero headline, intro, badge-text, stat-label, static-lines
+   ───────────────────────────────────────────────────────────────── */
+
+/* Display — Hero-level headline (h1 only, one per page) */
+.text-display {
+    font-family: var(--font-heading);
+    font-size: var(--text-display);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-display);
+    color: var(--color-text-primary);
+    letter-spacing: var(--tracking-tight);
+}
+
+/* Section Heading — Used for h2 in every section */
+.text-heading-1 {
+    font-family: var(--font-heading);
+    font-size: var(--text-heading-1);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-heading);
+    color: var(--color-text-primary);
+    letter-spacing: var(--tracking-tight);
+}
+
+/* Sub-heading — h3 inside sections */
+.text-heading-2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-heading-2);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-heading);
+    color: var(--color-text-primary);
+    letter-spacing: var(--tracking-tight);
+}
+
+/* Card heading — h4 inside cards */
+.text-heading-3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-heading-3);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-heading);
+    color: var(--color-text-primary);
+}
+
+/* Body paragraph */
+.text-body {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: var(--weight-thin);
+    line-height: var(--leading-body);
+    color: var(--color-text-secondary);
+}
+
+/* Caption — stat labels, badge text, small descriptions */
+.text-caption {
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: var(--weight-medium-lt);
+    color: var(--color-text-secondary);
+    letter-spacing: var(--tracking-wide);
+}
+
+/* Accent emphasis — keyword highlight (italic gold) */
+.text-accent {
+    color: var(--color-accent);
+    font-style: italic;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   §2.4  BUTTONS
+   Source: Hero .btn, .btn-primary, .btn-secondary
+   Usage:  <a class="btn btn-primary magnetic-btn"><span>Label</span><svg>…</svg></a>
+   ───────────────────────────────────────────────────────────────── */
+
+/* Base — inherited by all button variants */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-10);
+    padding: var(--button-padding);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-size: var(--text-button);
+    font-weight: var(--weight-semi);
+    letter-spacing: var(--tracking-normal);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    position: relative;
+    transition: all var(--duration-smooth) var(--ease-out-expo);
+    will-change: transform, box-shadow;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Primary — Gold filled */
+.btn-primary {
+    background: var(--color-accent);
+    color: var(--color-bg-primary);
+    box-shadow: var(--shadow-accent);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-accent-hover);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+}
+
+/* Secondary — Ghost with border */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:active {
+    transform: translateY(-1px);
+}
+
+/* Tertiary — Text-only (for future use, consistent with system) */
+.btn-tertiary {
+    background: transparent;
+    color: var(--color-accent);
+    padding: var(--space-8) var(--space-4);
+}
+
+.btn-tertiary:hover {
+    opacity: 0.8;
+}
+
+/* Button icon animation */
+.btn-arrow,
+.btn-icon {
+    transition: transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.btn:hover .btn-arrow {
+    transform: translateX(3px) rotate(-35deg);
+}
+
+.btn:hover .btn-icon {
+    transform: translateY(2px);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   §2.5  GLASS CARD
+   Source: Hero .floating-card
+   Usage:  <div class="glass-card">…</div>
+   ───────────────────────────────────────────────────────────────── */
+
+.glass-card {
+    background: var(--color-glass);
+    backdrop-filter: var(--blur-md);
+    -webkit-backdrop-filter: var(--blur-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--card-padding);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    box-shadow: var(--shadow-lg);
+    transition:
+        transform var(--duration-normal) var(--ease-out-expo),
+        box-shadow var(--duration-medium) ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 56px -10px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Larger glass card variant for section content */
+.glass-card--lg {
+    border-radius: var(--radius-lg);
+    padding: var(--space-32);
+}
+
+/* Glass card with accent border */
+.glass-card--accent {
+    border-color: var(--color-border-accent);
+    background: rgba(214, 166, 107, 0.04);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   §2.6  BADGE / PILL
+   Source: Hero .badge
+   Usage:  <div class="badge"><span class="badge-icon">★</span><span class="badge-text">Label</span></div>
+   ───────────────────────────────────────────────────────────────── */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-10);
+    padding: var(--space-7) var(--space-18);
+    background: rgba(214, 166, 107, 0.08);
+    border: 1px solid var(--color-border-accent);
+    border-radius: var(--radius-pill);
+    width: fit-content;
+}
+
+.badge-icon,
+.badge-stars {
+    font-size: var(--text-micro);
+    color: var(--color-accent);
+    letter-spacing: 1px;
+}
+
+.badge-text {
+    font-size: var(--text-caption);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-secondary);
+    letter-spacing: var(--tracking-wide);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   §2.7  TECH PILL
+   Source: Hero .tech-pill
+   Usage:  <span class="pill">React</span>
+   ───────────────────────────────────────────────────────────────── */
+
+.pill {
+    display: inline-block;
+    padding: var(--space-4) var(--space-10);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-secondary);
+    letter-spacing: var(--tracking-normal);
+    transition: all var(--duration-fast) ease;
+}
+
+.pill:hover {
+    background: rgba(214, 166, 107, 0.1);
+    border-color: rgba(214, 166, 107, 0.15);
+    color: var(--color-accent);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   §2.8  STAT BLOCK
+   Source: Hero .stat-item
+   Usage:  <div class="stat"><span class="stat__number" data-target="25">0</span>
+           <span class="stat__suffix">+</span><span class="stat__label">Projects</span></div>
+   ───────────────────────────────────────────────────────────────── */
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.stat__value {
+    display: flex;
+    align-items: baseline;
+}
+
+.stat__number {
+    font-family: var(--font-heading);
+    font-size: var(--text-stat);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    line-height: var(--leading-tight);
+}
+
+.stat__suffix {
+    font-family: var(--font-heading);
+    font-size: var(--text-heading-3);
+    font-weight: var(--weight-semibold);
+    color: var(--color-accent);
+    margin-left: var(--space-2);
+}
+
+.stat__label {
+    font-size: var(--text-caption);
+    font-weight: var(--weight-medium-lt);
+    color: var(--color-text-secondary);
+    letter-spacing: var(--tracking-wide);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   §2.9  STATUS DOT
+   Source: Hero .card-dot
+   Usage:  <span class="dot dot--active"></span>
+   ───────────────────────────────────────────────────────────────── */
+
+.dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dot--active {
+    background: var(--color-status-active);
+    box-shadow: var(--glow-green);
+    animation: dotPulse 2.5s ease-in-out infinite;
+}
+
+.dot--accent {
+    background: var(--color-accent);
+    box-shadow: var(--glow-gold);
+}
+
+@keyframes dotPulse {
+    0%, 100% { box-shadow: 0 0 8px rgba(74, 222, 128, 0.4); }
+    50%      { box-shadow: 0 0 14px rgba(74, 222, 128, 0.6); }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   §2.10  IMAGE FRAME
+   Source: Hero .portrait-frame
+   Usage:  <div class="image-frame"><img src="…" alt="…"></div>
+   ───────────────────────────────────────────────────────────────── */
+
+.image-frame {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow-xl);
+    transition: box-shadow var(--duration-elegant) var(--ease-smooth);
+}
+
+.image-frame img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    filter: contrast(1.02) brightness(1.01);
+}
+
+.image-frame:hover {
+    box-shadow:
+        0 40px 100px -20px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Reflection shimmer overlay */
+.image-frame__shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        115deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.03) 45%,
+        rgba(255, 255, 255, 0.06) 50%,
+        rgba(255, 255, 255, 0.03) 55%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity var(--duration-elegant) ease;
+    pointer-events: none;
+}
+
+.image-frame:hover .image-frame__shimmer {
+    opacity: 1;
+}
+
+/* Image frame radius variants */
+.image-frame--md { border-radius: var(--radius-md); }
+.image-frame--lg { border-radius: var(--radius-lg); }
+.image-frame--sm { border-radius: var(--radius-sm); }
+
+
+/* ─────────────────────────────────────────────────────────────────
+   §2.11  DIVIDERS
+   Source: Hero .stats-divider
+   Usage:  <div class="divider"></div>
+   ───────────────────────────────────────────────────────────────── */
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-border) 0%, transparent 100%);
+}
+
+.divider--center {
+    background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+.divider--accent {
+    background: linear-gradient(90deg, var(--color-accent-dim) 0%, transparent 100%);
+}
+
+
+/* =====================================================================
+   §3  ANIMATION PRESETS
+   =====================================================================
+   Reusable animation classes. Apply via HTML class or JS.
+   Every future section must use these — never create new curves.
+   ===================================================================== */
+
+
+/* ─── Fade Up (Scroll Reveal) ─── */
+.fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity var(--duration-reveal) var(--ease-out-expo),
+        transform var(--duration-reveal) var(--ease-out-expo);
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─── Fade In (No vertical movement) ─── */
+.fade-in {
+    opacity: 0;
+    transition: opacity var(--duration-reveal) var(--ease-out-expo);
+}
+
+.fade-in.visible {
+    opacity: 1;
+}
+
+/* ─── Slide Left (Enter from right) ─── */
+.slide-left {
+    opacity: 0;
+    transform: translateX(40px);
+    transition:
+        opacity var(--duration-reveal) var(--ease-out-expo),
+        transform var(--duration-reveal) var(--ease-out-expo);
+}
+
+.slide-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ─── Slide Right (Enter from left) ─── */
+.slide-right {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition:
+        opacity var(--duration-reveal) var(--ease-out-expo),
+        transform var(--duration-reveal) var(--ease-out-expo);
+}
+
+.slide-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ─── Scale Up (Zoom reveal) ─── */
+.scale-up {
+    opacity: 0;
+    transform: scale(0.92);
+    transition:
+        opacity var(--duration-reveal) var(--ease-out-expo),
+        transform var(--duration-reveal) var(--ease-out-expo);
+}
+
+.scale-up.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ─── Stagger Delays ───
+   Apply --stagger-index via inline style: style="--stagger-index: 0"
+   Each child gets progressive delay.
+   Usage:  <div class="fade-up" style="--stagger-index: 0">…</div>
+           <div class="fade-up" style="--stagger-index: 1">…</div>
+*/
+.fade-up[style*="--stagger-index"],
+.fade-in[style*="--stagger-index"],
+.slide-left[style*="--stagger-index"],
+.slide-right[style*="--stagger-index"],
+.scale-up[style*="--stagger-index"] {
+    transition-delay: calc(var(--stagger-index, 0) * 0.1s);
+}
+
+/* ─── Magnetic (JS-driven) ───
+   Add .magnetic-btn to any interactive element.
+   JS will handle mousemove/mouseleave transforms.
+   No CSS needed beyond the class marker.
+*/
+
+
+/* =====================================================================
+   §4  RESPONSIVE BREAKPOINTS
+   =====================================================================
+   Source: Hero media queries (1280, 1024, 768, 480)
+   Rule: All sections use these same breakpoints and token overrides.
+   ===================================================================== */
+
+/* ─── Large Desktop (≤1280px) ─── */
+@media (max-width: 1280px) {
+    :root {
+        --container-padding: 48px;
+        --grid-gap: var(--grid-gap-sm);
+    }
+}
+
+/* ─── Tablet (≤1024px) ─── */
+@media (max-width: 1024px) {
+    :root {
+        --container-padding: 32px;
+        --section-padding-y: 80px;
+        --section-padding-y-sm: 56px;
+    }
+}
+
+/* ─── Mobile (≤768px) ─── */
+@media (max-width: 768px) {
+    :root {
+        --container-padding: 24px;
+        --section-padding-y: 64px;
+        --section-padding-y-sm: 48px;
+        --grid-gap: 48px;
+        --button-padding: 14px 28px;
+        --stat-gap: 24px;
+    }
+
+    .text-display  { font-size: clamp(2rem, 7vw, 2.8rem); }
+    .text-heading-1 { font-size: clamp(1.6rem, 5.5vw, 2.4rem); }
+    .text-heading-2 { font-size: clamp(1.3rem, 4vw, 1.7rem); }
+}
+
+/* ─── Small Mobile (≤480px) ─── */
+@media (max-width: 480px) {
+    .text-display   { font-size: 1.85rem; }
+    .text-heading-1 { font-size: 1.5rem; }
+    .text-heading-2 { font-size: 1.25rem; }
+}
+
+
+/* =====================================================================
+   §5  ACCESSIBILITY
+   =====================================================================
+   Source: Hero prefers-reduced-motion, ARIA patterns, semantic HTML
+   Rule: Every future section automatically inherits these.
+   ===================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .grain-overlay { display: none; }
+    #particles     { display: none; }
+
+    .fade-up,
+    .fade-in,
+    .slide-left,
+    .slide-right,
+    .scale-up {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Focus visible — keyboard users only */
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+    border-radius: var(--radius-xs);
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

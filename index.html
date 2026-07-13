@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium digital experiences crafted by Hamza — Creative Technologist, Full Stack Developer, and AI Explorer. Engineering beyond expectations.">
+    <title>Hamza — Creative Technologist &amp; Digital Experience Designer</title>
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts: Playfair Display (editorial headlines) + Inter (modern body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ============================================
+         BACKGROUND EFFECTS
+         ============================================ -->
+
+    <!-- Film Grain Overlay -->
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <!-- Ambient Warm Lights -->
+    <div class="bg-lights" aria-hidden="true">
+        <div class="bg-light bg-light--1"></div>
+        <div class="bg-light bg-light--2"></div>
+        <div class="bg-light bg-light--3"></div>
+    </div>
+
+    <!-- Edge Vignette -->
+    <div class="vignette" aria-hidden="true"></div>
+
+    <!-- Minimal Particle Canvas -->
+    <canvas id="particles" aria-hidden="true"></canvas>
+
+
+    <!-- ============================================
+         NAVIGATION
+         ============================================ -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar-inner">
+            <!-- Logo -->
+            <a href="#" class="logo" id="nav-logo">
+                <span class="logo-text">HAMZA</span><span class="logo-dot">.</span>
+            </a>
+
+            <!-- Centered Nav Links -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" class="nav-link active" id="nav-home">Home</a></li>
+                <li><a href="#" class="nav-link" id="nav-projects">Projects</a></li>
+                <li><a href="#" class="nav-link" id="nav-about">About</a></li>
+                <li><a href="#" class="nav-link" id="nav-skills">Skills</a></li>
+                <li><a href="#" class="nav-link" id="nav-experience">Experience</a></li>
+                <li><a href="#" class="nav-link" id="nav-contact">Contact</a></li>
+            </ul>
+
+            <!-- CTA Button -->
+            <a href="#" class="nav-cta magnetic-btn" id="nav-cta">
+                <span>Let's Connect</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 8h10M9 4l4 4-4 4"/>
+                </svg>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <!-- ============================================
+         MOBILE MENU OVERLAY
+         ============================================ -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <div class="mobile-menu-inner">
+            <ul class="mobile-nav-links">
+                <li><a href="#" class="mobile-nav-link">Home</a></li>
+                <li><a href="#" class="mobile-nav-link">Projects</a></li>
+                <li><a href="#" class="mobile-nav-link">About</a></li>
+                <li><a href="#" class="mobile-nav-link">Skills</a></li>
+                <li><a href="#" class="mobile-nav-link">Experience</a></li>
+                <li><a href="#" class="mobile-nav-link">Contact</a></li>
+            </ul>
+            <a href="#" class="mobile-cta magnetic-btn">
+                <span>Let's Connect</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 8h10M9 4l4 4-4 4"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero" id="hero">
+        <div class="hero-container">
+
+            <!-- ─── LEFT: Content Column ─── -->
+            <div class="hero-content">
+
+                <!-- Top Badge -->
+                <div class="badge fade-up" id="hero-badge">
+                    <span class="badge-stars">★★★★★</span>
+                    <span class="badge-text">5.0 Creative Technologist</span>
+                </div>
+
+                <!-- Main Headline -->
+                <h1 class="headline fade-up" id="hero-headline">
+                    Crafting Digital<br>
+                    Experiences That<br>
+                    People <em class="accent">Remember</em>.
+                </h1>
+
+                <!-- Typed Animation Section -->
+                <div class="typed-section fade-up" id="hero-typed">
+                    <p class="static-lines">
+                        Beyond Code. Beyond Design. Beyond Limits.
+                    </p>
+                    <div class="typing-wrapper">
+                        <span class="typing-text" id="typing-text"></span>
+                        <span class="cursor" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <!-- Quote -->
+                <div class="quote fade-up" id="hero-quote">
+                    BUILDING EXPERIENCES, NOT JUST INTERFACES
+                </div>
+
+                <!-- Introduction Paragraph -->
+                <p class="intro fade-up" id="hero-intro">
+                    Multidisciplinary builder focused on premium interfaces, thoughtful software, and visual experiences that leave a lasting impression. I combine engineering, design, and emerging AI to solve complex problems with clarity, creativity, and purpose.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="cta-group fade-up" id="hero-cta">
+                    <a href="#" class="btn btn-primary magnetic-btn" id="cta-explore">
+                        <span>Explore My Journey</span>
+                        <svg class="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 9h10M10 5l4 4-4 4"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="btn btn-secondary magnetic-btn" id="cta-resume">
+                        <span>Download Resume</span>
+                        <svg class="btn-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 3v9M5 8l4 4 4-4M3 15h12"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Stats Divider -->
+                <div class="stats-divider fade-up" id="hero-divider"></div>
+
+                <!-- Stats -->
+                <div class="stats fade-up" id="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">
+                            <span class="stat-number" data-target="25">0</span><span class="stat-suffix">+</span>
+                        </div>
+                        <span class="stat-label">Creative Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">
+                            <span class="stat-number" data-target="10">0</span><span class="stat-suffix">+</span>
+                        </div>
+                        <span class="stat-label">Technologies</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">
+                            <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+                        </div>
+                        <span class="stat-label">Dedication</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ─── RIGHT: Portrait Column ─── -->
+            <div class="hero-portrait fade-up" id="hero-portrait-wrap">
+                <div class="portrait-container" id="portrait-container">
+
+                    <!-- Soft radial glow behind portrait -->
+                    <div class="portrait-glow" aria-hidden="true"></div>
+
+                    <!-- Portrait Frame -->
+                    <div class="portrait-frame">
+                        <img src="AmirHamzaimage.png"
+                             alt="Hamza — Creative Technologist portrait"
+                             loading="lazy"
+                             id="portrait-img">
+                        <!-- Reflection shimmer -->
+                        <div class="portrait-reflection" aria-hidden="true"></div>
+                    </div>
+
+                    <!-- ─── Floating Cards ─── -->
+
+                    <!-- Card 1: Top Right — Status -->
+                    <div class="floating-card card-status" data-depth="0.3">
+                        <div class="card-row">
+                            <span class="card-dot card-dot--green"></span>
+                            <span>Available for Work</span>
+                        </div>
+                        <div class="card-row">
+                            <span class="card-dot card-dot--gold"></span>
+                            <span>Exploring AI</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Left Middle — Works -->
+                    <div class="floating-card card-works" data-depth="0.4">
+                        <span class="card-number">5+</span>
+                        <span class="card-label">Creative Works</span>
+                    </div>
+
+                    <!-- Card 3: Bottom Left — Tech Stack -->
+                    <div class="floating-card card-tech" data-depth="0.25">
+                        <span class="card-title">Tech Stack</span>
+                        <div class="tech-pills">
+                            <span class="tech-pill">React</span>
+                            <span class="tech-pill">Next.js</span>
+                            <span class="tech-pill">TypeScript</span>
+                            <span class="tech-pill">Tailwind</span>
+                            <span class="tech-pill">AI</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Bottom Right — Years -->
+                    <div class="floating-card card-years" data-depth="0.35">
+                        <span class="card-number">3+</span>
+                        <span class="card-label">Years Creating</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         ABOUT SECTION — THE MIND BEHIND THE WORK
+         ============================================ -->
+    <section class="about" id="about">
+        <!-- Background Watermark -->
+        <div class="about-watermark" aria-hidden="true">CREATE WITH PURPOSE</div>
+
+        <div class="about-container">
+
+            <!-- ─── LEFT: Portrait Column ─── -->
+            <div class="about-portrait-col fade-up">
+                <div class="about-portrait-float">
+                    <div class="about-portrait-container" id="about-portrait-container">
+                        <div class="about-portrait-glow" aria-hidden="true"></div>
+                        <div class="about-portrait-frame">
+                            <img src="amirhamzaimage.png"
+                                 alt="Hamza — editorial portrait"
+                                 loading="lazy">
+                            <div class="about-portrait-reflection" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── RIGHT: Editorial Content ─── -->
+            <div class="about-content">
+
+                <!-- Section Label -->
+                <span class="about-label fade-up" style="--delay: 0.05s">THE STORY</span>
+
+                <!-- Main Heading -->
+                <h2 class="about-heading fade-up" style="--delay: 0.12s">
+                    The Mind Behind<br>
+                    The <em class="accent">Work</em>.
+                </h2>
+
+                <!-- Intro Label -->
+                <span class="about-intro-label fade-up" style="--delay: 0.18s">WHO I AM</span>
+
+                <!-- Intro Heading -->
+                <h3 class="about-intro-heading fade-up" style="--delay: 0.22s">
+                    Not Just Building Software.<br>
+                    Building <em class="accent">Experiences</em>.
+                </h3>
+
+                <!-- Story -->
+                <div class="about-story">
+                    <p class="fade-up" style="--delay: 0.28s">
+                        I believe the best digital products emerge at the intersection of engineering, design, strategy, and human understanding.
+                    </p>
+                    <p class="fade-up" style="--delay: 0.34s">
+                        Currently pursuing B.E. in Computer Engineering at Anjuman-I-Islam's Kalsekar Technical Campus (AIKTC), I continue exploring far beyond traditional software development — into AI, interface design, product thinking, and creative direction.
+                    </p>
+                    <p class="fade-up" style="--delay: 0.40s">
+                        Rather than simply building applications, I focus on crafting thoughtful digital experiences that solve real problems and leave a lasting impression.
+                    </p>
+                    <p class="fade-up" style="--delay: 0.46s">
+                        My approach combines technical precision, visual storytelling, critical thinking, and the discipline of continuous learning.
+                    </p>
+                </div>
+
+                <!-- Quote -->
+                <blockquote class="about-quote fade-up" style="--delay: 0.52s">
+                    <span class="about-quote-mark" aria-hidden="true">"</span>
+                    <p>Design with intention. Build with purpose.</p>
+                </blockquote>
+
+                <!-- Principle Cards -->
+                <div class="about-principles">
+                    <div class="about-principle fade-up" style="--delay: 0.56s">
+                        <span class="about-principle-index" aria-hidden="true">01</span>
+                        <h4 class="about-principle-title">Critical Thinker</h4>
+                        <p class="about-principle-desc">I enjoy simplifying complex problems into practical, elegant solutions.</p>
+                    </div>
+                    <div class="about-principle fade-up" style="--delay: 0.62s">
+                        <span class="about-principle-index" aria-hidden="true">02</span>
+                        <h4 class="about-principle-title">Creative Builder</h4>
+                        <p class="about-principle-desc">I combine engineering precision with thoughtful design and visual storytelling.</p>
+                    </div>
+                    <div class="about-principle fade-up" style="--delay: 0.68s">
+                        <span class="about-principle-index" aria-hidden="true">03</span>
+                        <h4 class="about-principle-title">Future Focused</h4>
+                        <p class="about-principle-desc">Continuously learning AI, intelligent systems, automation, and next-generation digital experiences.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         JOURNEY & MILESTONES
+         ============================================ -->
+    <section class="journey" id="journey">
+        <div class="journey-watermark" aria-hidden="true">MILESTONES</div>
+
+        <div class="s-container">
+            <span class="section-label fade-up" style="--delay: 0.05s">JOURNEY & MILESTONES</span>
+
+            <h2 class="section-heading fade-up" style="--delay: 0.12s">
+                Some Moments<br>
+                Shape The <em class="accent">Journey</em>.
+            </h2>
+
+            <p class="section-intro fade-up" style="--delay: 0.18s">
+                Every milestone reflects curiosity, discipline, creativity, and continuous growth. These experiences shaped not only my technical journey but also the way I approach leadership, design, and problem solving.
+            </p>
+
+            <div class="timeline" id="timeline">
+                <div class="timeline-track" aria-hidden="true">
+                    <div class="timeline-fill" id="timeline-fill"></div>
+                </div>
+
+                <!-- Milestone 01 — District Level Champion -->
+                <div class="timeline-item timeline-left fade-up" style="--delay: 0.1s">
+                    <div class="timeline-node" aria-hidden="true"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-icon" aria-hidden="true">🥋</span>
+                        <span class="timeline-index" aria-hidden="true">01</span>
+                        <h3 class="timeline-title">District Level Champion</h3>
+                        <span class="timeline-subtitle">Mixed Martial Arts — Kumite</span>
+                        <p class="timeline-desc">Winning at the district level in Kumite strengthened my discipline, resilience, strategic thinking, and ability to stay calm under pressure. Those same qualities continue to shape the way I approach technology, teamwork, and leadership.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone 02 — Best Student -->
+                <div class="timeline-item timeline-right fade-up" style="--delay: 0.1s">
+                    <div class="timeline-node" aria-hidden="true"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-icon" aria-hidden="true">🏆</span>
+                        <span class="timeline-index" aria-hidden="true">02</span>
+                        <h3 class="timeline-title">Best Student of the Year</h3>
+                        <span class="timeline-subtitle">Higher Secondary Education</span>
+                        <p class="timeline-desc">Recognized during Higher Secondary education for academic excellence, consistency, leadership, discipline, and active contribution beyond academics.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone 03 — Creative Director -->
+                <div class="timeline-item timeline-left fade-up" style="--delay: 0.1s">
+                    <div class="timeline-node" aria-hidden="true"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-icon" aria-hidden="true">🎨</span>
+                        <span class="timeline-index" aria-hidden="true">03</span>
+                        <h3 class="timeline-title">Creative Director & Lead Designer</h3>
+                        <span class="timeline-subtitle">ByteBattle · Dept. of Computer Engineering, AIKTC</span>
+                        <p class="timeline-desc">Led the complete creative direction and visual identity for ByteBattle, a 15-hour solo online hackathon.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Brand Identity</span>
+                            <span class="timeline-tag">Event Design</span>
+                            <span class="timeline-tag">Social Media</span>
+                            <span class="timeline-tag">Motion Graphics</span>
+                            <span class="timeline-tag">Creative Direction</span>
+                            <span class="timeline-tag">Visual Consistency</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Milestone 04 — PRO -->
+                <div class="timeline-item timeline-right fade-up" style="--delay: 0.1s">
+                    <div class="timeline-node" aria-hidden="true"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-icon" aria-hidden="true">🌍</span>
+                        <span class="timeline-index" aria-hidden="true">04</span>
+                        <h3 class="timeline-title">Public Relations Officer</h3>
+                        <span class="timeline-subtitle">LEO Club of Kalsekar Technical Campus</span>
+                        <p class="timeline-desc">Currently serving as Public Relations Officer, managing public communication, collaborations, partnerships, media outreach, branding initiatives, and maintaining the professional image of the organization while strengthening community engagement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         EDUCATION
+         ============================================ -->
+    <section class="education" id="education">
+        <div class="s-container">
+            <span class="section-label fade-up" style="--delay: 0.05s">EDUCATION</span>
+
+            <h2 class="section-heading fade-up" style="--delay: 0.12s">
+                Learning Never <em class="accent">Stops</em>.
+            </h2>
+
+            <p class="section-intro fade-up" style="--delay: 0.18s">
+                My academic journey reflects continuous growth, curiosity, and the determination to build a strong technical foundation while exploring creativity beyond the classroom.
+            </p>
+
+            <div class="education-stack">
+                <!-- Education 01 — B.E. -->
+                <div class="edu-card fade-up" style="--delay: 0.22s">
+                    <div class="edu-card-accent" aria-hidden="true"></div>
+                    <div class="edu-header">
+                        <div class="edu-icon-wrap">
+                            <span class="edu-icon">🎓</span>
+                        </div>
+                        <span class="edu-year">2024 — Present</span>
+                    </div>
+                    <h3 class="edu-degree">Bachelor of Engineering</h3>
+                    <span class="edu-field">Computer Engineering</span>
+                    <div class="edu-divider"></div>
+                    <span class="edu-institution">Anjuman-I-Islam’s Kalsekar Technical Campus (AIKTC)</span>
+                    <span class="edu-location">
+                        <svg class="edu-location-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Panvel, Navi Mumbai
+                    </span>
+                    <div class="edu-badge edu-badge--active">
+                        <span class="edu-badge-dot"></span>
+                        Third Year Student
+                    </div>
+                </div>
+
+                <!-- Education 02 — HSC -->
+                <div class="edu-card fade-up" style="--delay: 0.30s">
+                    <div class="edu-card-accent" aria-hidden="true"></div>
+                    <div class="edu-header">
+                        <div class="edu-icon-wrap">
+                            <span class="edu-icon">📘</span>
+                        </div>
+                        <span class="edu-year">2023 — 2024</span>
+                    </div>
+                    <h3 class="edu-degree">HSC — Higher Secondary Certificate</h3>
+                    <span class="edu-field">Maharashtra Board</span>
+                    <div class="edu-divider"></div>
+                    <span class="edu-institution">Rosary Junior College</span>
+                    <span class="edu-location">
+                        <svg class="edu-location-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Mumbra
+                    </span>
+                    <div class="edu-badge">
+                        <span class="edu-score">60.17%</span>
+                    </div>
+                </div>
+
+                <!-- Education 03 — SSC -->
+                <div class="edu-card fade-up" style="--delay: 0.38s">
+                    <div class="edu-card-accent" aria-hidden="true"></div>
+                    <div class="edu-header">
+                        <div class="edu-icon-wrap">
+                            <span class="edu-icon">📗</span>
+                        </div>
+                        <span class="edu-year">2021 — 2022</span>
+                    </div>
+                    <h3 class="edu-degree">SSC — Secondary School Certificate</h3>
+                    <span class="edu-field">Maharashtra Board</span>
+                    <div class="edu-divider"></div>
+                    <span class="edu-institution">Modern English High School</span>
+                    <div class="edu-badge">
+                        <span class="edu-score">58.80%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SKILLS & EXPERTISE
+         ============================================ -->
+    <section class="skills" id="skills">
+        <div class="skills-watermark" aria-hidden="true">EXPERTISE</div>
+
+        <div class="s-container">
+            <span class="section-label fade-up" style="--delay: 0.05s">SKILLS & EXPERTISE</span>
+
+            <h2 class="section-heading fade-up" style="--delay: 0.12s">
+                Tools of The <em class="accent">Craft</em>.
+            </h2>
+
+            <p class="section-intro fade-up" style="--delay: 0.18s">
+                A curated set of disciplines, technologies, and creative tools that power the digital experiences I build.
+            </p>
+
+            <div class="skills-grid">
+                <!-- Skill 01 — Development -->
+                <div class="skill-card fade-up" style="--delay: 0.22s">
+                    <div class="skill-icon-wrap">
+                        <svg class="skill-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"/>
+                            <polyline points="8 6 2 12 8 18"/>
+                        </svg>
+                    </div>
+                    <span class="skill-label">Core Discipline</span>
+                    <h3 class="skill-title">Development</h3>
+                    <p class="skill-desc">Building scalable, production-ready digital experiences using modern web technologies with performance and maintainability in mind.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+
+                <!-- Skill 02 — AI -->
+                <div class="skill-card fade-up" style="--delay: 0.28s">
+                    <div class="skill-icon-wrap">
+                        <svg class="skill-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v4m0 14v4M1 12h4m14 0h4"/>
+                            <path d="m4.93 4.93 2.83 2.83m8.48 8.48 2.83 2.83m0-17.17-2.83 2.83m-8.48 8.48-2.83 2.83"/>
+                        </svg>
+                    </div>
+                    <span class="skill-label">Emerging Focus</span>
+                    <h3 class="skill-title">Artificial Intelligence</h3>
+                    <p class="skill-desc">Exploring AI-driven workflows, automation, prompt engineering, and modern intelligent systems to build smarter digital experiences.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">OpenAI APIs</span>
+                        <span class="skill-tag">AI Workflows</span>
+                        <span class="skill-tag">LLM Concepts</span>
+                        <span class="skill-tag">Automation</span>
+                        <span class="skill-tag">AI Agents</span>
+                        <span class="skill-tag">RAG Fundamentals</span>
+                    </div>
+                </div>
+
+                <!-- Skill 03 — Design -->
+                <div class="skill-card fade-up" style="--delay: 0.34s">
+                    <div class="skill-icon-wrap">
+                        <svg class="skill-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="16 3 21 8 8 21 3 21 3 16 16 3"/>
+                        </svg>
+                    </div>
+                    <span class="skill-label">Creative Practice</span>
+                    <h3 class="skill-title">Design</h3>
+                    <p class="skill-desc">Creating premium visual systems and user experiences that combine functionality with storytelling.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">UI Design</span>
+                        <span class="skill-tag">UX Design</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Photoshop</span>
+                        <span class="skill-tag">Illustrator</span>
+                        <span class="skill-tag">Brand Identity</span>
+                        <span class="skill-tag">Motion Graphics</span>
+                        <span class="skill-tag">Creative Direction</span>
+                    </div>
+                </div>
+
+                <!-- Skill 04 — Data & Strategy -->
+                <div class="skill-card fade-up" style="--delay: 0.40s">
+                    <div class="skill-icon-wrap">
+                        <svg class="skill-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10"/>
+                            <line x1="12" y1="20" x2="12" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="14"/>
+                        </svg>
+                    </div>
+                    <span class="skill-label">Strategic Thinking</span>
+                    <h3 class="skill-title">Data & Strategy</h3>
+                    <p class="skill-desc">Using structured thinking and data-driven approaches to make better design and product decisions.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Data Visualization</span>
+                        <span class="skill-tag">Product Thinking</span>
+                        <span class="skill-tag">Critical Thinking</span>
+                        <span class="skill-tag">Research</span>
+                        <span class="skill-tag">Public Relations</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         FEATURED WORK — PROJECT CASE STUDIES
+         ============================================ -->
+    <section class="projects" id="projects">
+        <div class="projects-watermark" aria-hidden="true">PROJECTS</div>
+
+        <div class="s-container">
+            <span class="section-label fade-up" style="--delay: 0.05s">FEATURED WORK</span>
+
+            <h2 class="section-heading fade-up" style="--delay: 0.12s">
+                Ideas Built Into<br>
+                Meaningful <em class="accent">Experiences</em>.
+            </h2>
+
+            <p class="section-intro fade-up" style="--delay: 0.18s">
+                Every project begins with a problem worth solving. My approach combines engineering, design, research, and AI to build experiences that are thoughtful, scalable, and human-centered.
+            </p>
+        </div>
+
+
+        <!-- ──────── PROJECT 01 — EduSphere AI ──────── -->
+        <div class="project project-01" id="project-edusphere">
+            <div class="project-glow" aria-hidden="true"></div>
+            <div class="s-container">
+                <div class="project-grid project-grid--visual-left">
+
+                    <!-- Visual Side -->
+                    <div class="project-visual fade-up" style="--delay: 0.1s">
+                        <div class="project-mockup-wrapper" id="project-mockup-1">
+                            <div class="project-mockup">
+                                <div class="project-screen">
+                                    <img src="edusphere_1.png"
+                                         alt="EduSphere AI — Dark-themed educational dashboard with AI chat, learning modules, and progress analytics"
+                                         loading="lazy"
+                                         width="1024" height="1024">
+                                    <div class="project-screen-glow" aria-hidden="true"></div>
+                                </div>
+                                <div class="project-mockup-base" aria-hidden="true">
+                                    <div class="project-mockup-notch"></div>
+                                </div>
+                            </div>
+
+                            <!-- Phone Mockup -->
+                            <div class="project-phone" aria-hidden="true">
+                                <div class="project-phone-notch"></div>
+                                <div class="project-phone-screen">
+                                    <img src="edusphere_3.png"
+                                         alt="" loading="lazy"
+                                         width="1024" height="1024">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Stat Cards -->
+                        <div class="project-float-cards fade-up" style="--delay: 0.2s">
+                            <span class="project-float-card">
+                                <span class="project-float-dot" aria-hidden="true"></span>
+                                AI Powered
+                            </span>
+                            <span class="project-float-card">
+                                <span class="project-float-dot" aria-hidden="true"></span>
+                                Low Bandwidth
+                            </span>
+                            <span class="project-float-card">
+                                <span class="project-float-dot" aria-hidden="true"></span>
+                                Responsive
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Content Side -->
+                    <div class="project-content">
+                        <div class="project-header fade-up" style="--delay: 0.08s">
+                            <span class="project-index" aria-hidden="true">01</span>
+                            <div class="project-cats">
+                                <span class="project-cat">AI</span>
+                                <span class="project-cat-dot" aria-hidden="true"></span>
+                                <span class="project-cat">Education</span>
+                                <span class="project-cat-dot" aria-hidden="true"></span>
+                                <span class="project-cat">MERN</span>
+                                <span class="project-cat-dot" aria-hidden="true"></span>
+                                <span class="project-cat">Product Design</span>
+                            </div>
+                        </div>
+
+                        <h3 class="project-title fade-up" style="--delay: 0.12s">EduSphere AI</h3>
+
+                        <p class="project-tagline fade-up" style="--delay: 0.16s">
+                            Making Quality Education Accessible Through Intelligent Technology.
+                        </p>
+
+                        <p class="project-desc fade-up" style="--delay: 0.2s">
+                            EduSphere AI is an education-focused product vision designed to bridge the learning gap for students, especially those in rural and low-bandwidth environments. Instead of simply providing information, the platform is structured around personalized guidance, intuitive learning experiences, and AI-powered educational support. The focus is on accessibility, simplicity, and meaningful learning.
+                        </p>
+
+                        <!-- Challenge & Solution -->
+                        <div class="project-cs fade-up" style="--delay: 0.24s">
+                            <div class="project-challenge">
+                                <span class="project-cs-label">Challenge</span>
+                                <p>Many students struggle to access quality educational resources because of poor internet connectivity, limited digital infrastructure, and overwhelming learning platforms.</p>
+                            </div>
+                            <div class="project-solution">
+                                <span class="project-cs-label">Solution</span>
+                                <p>EduSphere AI introduces a lightweight AI-powered ecosystem that works efficiently even on slower networks while maintaining a premium learning experience.</p>
+                            </div>
+                        </div>
+
+                        <!-- Highlights -->
+                        <div class="project-highlights fade-up" style="--delay: 0.28s">
+                            <span class="project-highlight"><span class="check" aria-hidden="true">✓</span> AI Assisted Learning</span>
+                            <span class="project-highlight"><span class="check" aria-hidden="true">✓</span> Low Bandwidth Optimized</span>
+                            <span class="project-highlight"><span class="check" aria-hidden="true">✓</span> Modern Dashboard</span>
+                            <span class="project-highlight"><span class="check" aria-hidden="true">✓</span> Personalized Guidance</span>
+                            <span class="project-highlight"><span class="check" aria-hidden="true">✓</span> Responsive Interface</span>
+                            <span class="project-highlight"><span class="check" aria-hidden="true">✓</span> Future Ready Architecture</span>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div class="project-tech fade-up" style="--delay: 0.32s">
+                            <span class="project-tech-tag">React</span>
+                            <span class="project-tech-tag">Node.js</span>
+                            <span class="project-tech-tag">Tailwind CSS</span>
+                            <span class="project-tech-tag">JavaScript</span>
+                            <span class="project-tech-tag">Vibe Coding</span>
+                        </div>
+
+                        <!-- Design Process -->
+                        <div class="project-process fade-up" style="--delay: 0.36s">
+                            <span class="process-step">Discover</span>
+                            <span class="process-connector"><span class="process-dot"></span></span>
+                            <span class="process-step">Research</span>
+                            <span class="process-connector"><span class="process-dot"></span></span>
+                            <span class="process-step">Design</span>
+                            <span class="process-connector"><span class="process-dot"></span></span>
+                            <span class="process-step">Develop</span>
+                            <span class="process-connector"><span class="process-dot"></span></span>
+                            <span class="process-step">Refine</span>
+                            <span class="process-connector"><span class="process-dot"></span></span>
+                            <span class="process-step">Launch</span>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="project-actions fade-up" style="--delay: 0.4s">
+                            <a href="#" class="project-btn project-btn--primary" target="_blank" rel="noopener noreferrer">
+                                <svg class="project-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <polyline points="15 3 21 3 21 9"/>
+                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                </svg>
+                                View Project
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ──── Project Divider ──── -->
+        <div class="s-container">
+            <div class="project-divider" aria-hidden="true"></div>
+        </div>
+
+
+        <!-- ──────── PROJECT 02 — ShieldHer ──────── -->
+        <div class="project project-02" id="project-shieldher">
+            <div class="project-glow" aria-hidden="true"></div>
+            <div class="s-container">
+                <div class="project-grid project-grid--visual-right">
+
+                    <!-- Content Side (left on desktop) -->
+                    <div class="project-content">
+                        <div class="project-header fade-up" style="--delay: 0.08s">
+                            <span class="project-index" aria-hidden="true">02</span>
+                            <div class="project-cats">
+                                <span class="project-cat">AI</span>
+                                <span class="project-cat-dot" aria-hidden="true"></span>
+                                <span class="project-cat">Safety</span>
+                                <span class="project-cat-dot" aria-hidden="true"></span>
+                                <span class="project-cat">MERN</span>
+                                <span class="project-cat-dot" aria-hidden="true"></span>
+                                <span class="project-cat">UX Research</span>
+                            </div>
+                        </div>
+
+                        <h3 class="project-title fade-up" style="--delay: 0.12s">ShieldHer</h3>
+
+                        <p class="project-tagline fade-up" style="--delay: 0.16s">
+                            Technology Designed Around Safety, Trust, and Confidence.
+                        </p>
+
+                        <p class="project-desc fade-up" style="--delay: 0.2s">
+                            ShieldHer is a safety-oriented digital product concept focused on empowering women through technology. The platform combines thoughtful interface design, AI-assisted features, and responsible product thinking to create a trusted ecosystem for emergency assistance and safety awareness. The emphasis is not on fear—but on confidence, accessibility, and real-world usability.
+                        </p>
+
+                        <!-- Challenge & Solution -->
+                        <div class="project-cs fade-up" style="--delay: 0.24s">
+                            <div class="project-challenge">
+                                <span class="project-cs-label">Challenge</span>
+                                <p>Safety solutions often become overly complicated or stressful during emergencies.</p>
+                            </div>
+                            <div class="project-solution">
+                                <span class="project-cs-label">Solution</span>
+                                <p>ShieldHer simplifies interactions through clean design, AI-assisted workflows, and quick-access features that reduce cognitive load during critical situations.</p>
+                            </div>
+                        </div>
+
+                        <!-- Highlights -->
+                        <div class="project-highlights fade-up" style="--delay: 0.28s">
+                            <span class="project-highlight"><span class="check" aria-hidden="true">✓</span> Emergency Response</span>
+                            <span class="project-highlight"><span class="check" aria-hidden="true">✓</span> AI Assisted Features</span>
+                            <span class="project-highlight"><span class="check" aria-hidden="true">✓</span> Live Location Concepts</span>
+                            <span class="project-highlight"><span class="check" aria-hidden="true">✓</span> Trusted Interface</span>
+                            <span class="project-highlight"><span class="check" aria-hidden="true">✓</span> Accessibility Focused</span>
+                            <span class="project-highlight"><span class="check" aria-hidden="true">✓</span> Human Centered Design</span>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div class="project-tech fade-up" style="--delay: 0.32s">
+                            <span class="project-tech-tag">React</span>
+                            <span class="project-tech-tag">Node.js</span>
+                            <span class="project-tech-tag">Express</span>
+                            <span class="project-tech-tag">Tailwind CSS</span>
+                            <span class="project-tech-tag">Vibe Coding</span>
+                        </div>
+
+                        <!-- Design Process -->
+                        <div class="project-process fade-up" style="--delay: 0.36s">
+                            <span class="process-step">Discover</span>
+                            <span class="process-connector"><span class="process-dot"></span></span>
+                            <span class="process-step">Research</span>
+                            <span class="process-connector"><span class="process-dot"></span></span>
+                            <span class="process-step">Design</span>
+                            <span class="process-connector"><span class="process-dot"></span></span>
+                            <span class="process-step">Develop</span>
+                            <span class="process-connector"><span class="process-dot"></span></span>
+                            <span class="process-step">Refine</span>
+                            <span class="process-connector"><span class="process-dot"></span></span>
+                            <span class="process-step">Launch</span>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="project-actions fade-up" style="--delay: 0.4s">
+                            <a href="https://shield-her-guard.base44.app" class="project-btn project-btn--primary" target="_blank" rel="noopener noreferrer">
+                                <svg class="project-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <polyline points="15 3 21 3 21 9"/>
+                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                </svg>
+                                View Project
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Visual Side (right on desktop) -->
+                    <div class="project-visual fade-up" style="--delay: 0.1s">
+                        <div class="project-mockup-wrapper" id="project-mockup-2">
+                            <div class="project-mockup">
+                                <div class="project-screen">
+                                    <img src="assets/shieldher-showcase.png"
+                                         alt="ShieldHer — Dark-themed safety dashboard with map view, emergency SOS, and contact cards"
+                                         loading="lazy"
+                                         width="1024" height="1024">
+                                    <div class="project-screen-glow" aria-hidden="true"></div>
+                                </div>
+                                <div class="project-mockup-base" aria-hidden="true">
+                                    <div class="project-mockup-notch"></div>
+                                </div>
+                            </div>
+
+                            <!-- Phone Mockup -->
+                            <div class="project-phone" aria-hidden="true">
+                                <div class="project-phone-notch"></div>
+                                <div class="project-phone-screen">
+                                    <img src="assets/shieldher-showcase.png"
+                                         alt="" loading="lazy"
+                                         width="1024" height="1024">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Stat Cards -->
+                        <div class="project-float-cards fade-up" style="--delay: 0.2s">
+                            <span class="project-float-card">
+                                <span class="project-float-dot" aria-hidden="true"></span>
+                                Human Centered
+                            </span>
+                            <span class="project-float-card">
+                                <span class="project-float-dot" aria-hidden="true"></span>
+                                Premium UI
+                            </span>
+                            <span class="project-float-card">
+                                <span class="project-float-dot" aria-hidden="true"></span>
+                                AI Assisted
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SCROLL INDICATOR
+         ============================================ -->
+    <div class="scroll-indicator" id="scroll-indicator" aria-hidden="true">
+        <span class="scroll-text">SCROLL</span>
+        <div class="scroll-line">
+            <div class="scroll-dot"></div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+    <script src="about.js"></script>
+    <script src="sections.js"></script>
+</body>
+</html>
