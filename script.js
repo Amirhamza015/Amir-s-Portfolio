@@ -17,6 +17,10 @@
     const typingText        = document.getElementById('typing-text');
     const particleCanvas    = document.getElementById('particles');
     const scrollIndicator   = document.getElementById('scroll-indicator');
+    const navCta            = document.getElementById('nav-cta');
+    const mobileNavCta      = document.getElementById('mobile-nav-cta');
+
+    let isSmoothScrolling = false;
 
 
     /* =================================================================
@@ -248,7 +252,125 @@
 
 
     /* =================================================================
-       6. NAVBAR SCROLL BEHAVIOR
+       6. NAVIGATION — SMOOTH SCROLL TO CONTACT
+       Ease-in-out animation, navbar offset, active state highlight
+       ================================================================= */
+
+    function getNavOffset() {
+        return (navbar ? navbar.offsetHeight : 72) + 16;
+    }
+
+    function easeInOutCubic(t) {
+        return t < 0.5
+            ? 4 * t * t * t
+            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function clearActiveNavLinks() {
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+    }
+
+    function animateCtaArrow(ctaEl) {
+        if (!ctaEl || prefersReducedMotion) return;
+
+        const arrow = ctaEl.querySelector('svg');
+        if (!arrow) return;
+
+        arrow.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)';
+        arrow.style.transform = 'translateX(4px)';
+
+        setTimeout(() => {
+            arrow.style.transform = 'translateX(0)';
+        }, 700);
+    }
+
+    function smoothScrollToY(targetY, duration, onComplete) {
+        if (prefersReducedMotion) {
+            window.scrollTo(0, targetY);
+            onComplete?.();
+            return;
+        }
+
+        const startY = window.scrollY;
+        const distance = targetY - startY;
+        const startTime = performance.now();
+
+        isSmoothScrolling = true;
+
+        function step(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = easeInOutCubic(progress);
+
+            window.scrollTo(0, startY + distance * eased);
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                isSmoothScrolling = false;
+                onComplete?.();
+            }
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    function scrollToContact(options) {
+        const fromCTA = options && options.fromCTA;
+        const contactSection = document.getElementById('contact');
+
+        if (!contactSection) return;
+
+        const targetY = Math.max(
+            0,
+            contactSection.getBoundingClientRect().top + window.scrollY - getNavOffset()
+        );
+
+        clearActiveNavLinks();
+
+        if (fromCTA && options.ctaEl) {
+            animateCtaArrow(options.ctaEl);
+        }
+
+        smoothScrollToY(targetY, fromCTA ? 1100 : 1000, () => {
+            history.replaceState(null, '', '#contact');
+        });
+    }
+
+    function closeMobileMenuIfOpen() {
+        if (!mobileMenu || !mobileMenu.classList.contains('open')) return;
+
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.classList.remove('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+        document.body.style.overflow = '';
+    }
+
+    function initNavScroll() {
+        const contactTriggers = [
+            { el: navCta, fromCTA: true },
+            { el: mobileNavCta, fromCTA: true }
+        ];
+
+        contactTriggers.forEach(({ el, fromCTA }) => {
+            if (!el) return;
+
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeMobileMenuIfOpen();
+                scrollToContact({ fromCTA, ctaEl: el });
+            });
+        });
+    }
+
+
+    /* =================================================================
+       7. NAVBAR SCROLL BEHAVIOR
        Shrink + increase blur on scroll
        ================================================================= */
 
@@ -281,7 +403,7 @@
 
 
     /* =================================================================
-       7. MOBILE MENU
+       8. MOBILE MENU
        Elegant slide overlay
        ================================================================= */
 
@@ -464,6 +586,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         initScrollReveals();
+        initNavScroll();
         initNavbarScroll();
         initMobileMenu();
         initMagneticButtons();

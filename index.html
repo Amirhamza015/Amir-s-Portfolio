@@ -50,16 +50,16 @@
 
             <!-- Centered Nav Links -->
             <ul class="nav-links" id="nav-links">
-                <li><a href="#" class="nav-link active" id="nav-home">Home</a></li>
-                <li><a href="#" class="nav-link" id="nav-projects">Projects</a></li>
-                <li><a href="#" class="nav-link" id="nav-about">About</a></li>
-                <li><a href="#" class="nav-link" id="nav-skills">Skills</a></li>
-                <li><a href="#" class="nav-link" id="nav-experience">Experience</a></li>
-                <li><a href="#" class="nav-link" id="nav-contact">Contact</a></li>
+                <li><a href="#hero" class="nav-link active" id="nav-home">Home</a></li>
+                <li><a href="#projects" class="nav-link" id="nav-projects">Projects</a></li>
+                <li><a href="#selected-works" class="nav-link" id="nav-works">Works</a></li>
+                <li><a href="#about" class="nav-link" id="nav-about">About</a></li>
+                <li><a href="#skills" class="nav-link" id="nav-skills">Skills</a></li>
+                <li><a href="#journey" class="nav-link" id="nav-experience">Experience</a></li>
             </ul>
 
             <!-- CTA Button -->
-            <a href="#" class="nav-cta magnetic-btn" id="nav-cta">
+            <a href="#contact" class="nav-cta magnetic-btn" id="nav-cta">
                 <span>Let's Connect</span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 8h10M9 4l4 4-4 4"/>
@@ -82,14 +82,14 @@
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
         <div class="mobile-menu-inner">
             <ul class="mobile-nav-links">
-                <li><a href="#" class="mobile-nav-link">Home</a></li>
-                <li><a href="#" class="mobile-nav-link">Projects</a></li>
-                <li><a href="#" class="mobile-nav-link">About</a></li>
-                <li><a href="#" class="mobile-nav-link">Skills</a></li>
-                <li><a href="#" class="mobile-nav-link">Experience</a></li>
-                <li><a href="#" class="mobile-nav-link">Contact</a></li>
+                <li><a href="#hero" class="mobile-nav-link">Home</a></li>
+                <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+                <li><a href="#selected-works" class="mobile-nav-link">Works</a></li>
+                <li><a href="#about" class="mobile-nav-link">About</a></li>
+                <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+                <li><a href="#journey" class="mobile-nav-link">Experience</a></li>
             </ul>
-            <a href="#" class="mobile-cta magnetic-btn">
+            <a href="#contact" class="mobile-cta magnetic-btn" id="mobile-nav-cta">
                 <span>Let's Connect</span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 8h10M9 4l4 4-4 4"/>
@@ -924,6 +924,429 @@
 
 
     <!-- ============================================
+         SELECTED WORKS — CREATIVE GALLERY
+         ============================================ -->
+    <section class="gallery" id="selected-works" aria-labelledby="gallery-heading">
+        <div class="gallery-ambient" aria-hidden="true"></div>
+        <div class="gallery-watermark" aria-hidden="true">SELECTED</div>
+
+        <div class="s-container gallery-header">
+            <span class="section-label gallery-label fade-up" style="--delay: 0.05s">SELECTED WORKS</span>
+
+            <h2 class="section-heading gallery-heading fade-up" style="--delay: 0.1s" id="gallery-heading">
+                Designs<br>
+                That Speak<br>
+                Before <em class="accent">Words</em>.
+            </h2>
+
+            <p class="gallery-intro fade-up" style="--delay: 0.16s">
+                Every visual begins with a purpose. From branding and event campaigns to interface design and digital storytelling, each project reflects my approach to solving problems through design rather than decoration.
+            </p>
+
+            <div class="gallery-filters fade-up" style="--delay: 0.22s" role="tablist" aria-label="Filter gallery by category">
+                <div class="gallery-filters-track" id="gallery-filters-track">
+                    <span class="gallery-filter-indicator" id="gallery-filter-indicator" aria-hidden="true"></span>
+                    <button type="button" class="gallery-filter is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+                    <button type="button" class="gallery-filter" data-filter="branding" role="tab" aria-selected="false">Branding</button>
+                    <button type="button" class="gallery-filter" data-filter="posters" role="tab" aria-selected="false">Posters</button>
+                    <button type="button" class="gallery-filter" data-filter="social-media" role="tab" aria-selected="false">Social Media</button>
+                    <button type="button" class="gallery-filter" data-filter="ui-ux" role="tab" aria-selected="false">UI/UX</button>
+                    <button type="button" class="gallery-filter" data-filter="events" role="tab" aria-selected="false">Events</button>
+                    <button type="button" class="gallery-filter" data-filter="creative-experiments" role="tab" aria-selected="false">Creative Experiments</button>
+                    <button type="button" class="gallery-filter" data-filter="motion" role="tab" aria-selected="false">Motion</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="s-container gallery-stage">
+            <div class="gallery-grid" id="gallery-grid" role="list" aria-live="polite"></div>
+        </div>
+
+        <div class="gallery-outro">
+            <div class="s-container">
+                <div class="gallery-outro-inner fade-up" style="--delay: 0.1s">
+                    <span class="gallery-outro-line" aria-hidden="true"></span>
+                    <h3 class="gallery-outro-heading">
+                        More Than Projects.<br>
+                        More Than <em class="accent">Pixels</em>.
+                    </h3>
+                    <p class="gallery-outro-text">Every experience begins with intention.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         LIGHTBOX — FULLSCREEN GALLERY VIEWER
+         ============================================ -->
+    <div class="gallery-lightbox" id="gallery-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Design gallery viewer">
+        <div class="gallery-lightbox-backdrop" id="gallery-lightbox-backdrop"></div>
+
+        <button type="button" class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close gallery">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+
+        <div class="gallery-lightbox-counter" id="gallery-lightbox-counter" aria-live="polite">01 / 13</div>
+
+        <button type="button" class="gallery-lightbox-nav gallery-lightbox-prev" id="gallery-lightbox-prev" aria-label="Previous design">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
+        <button type="button" class="gallery-lightbox-nav gallery-lightbox-next" id="gallery-lightbox-next" aria-label="Next design">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+
+        <div class="gallery-lightbox-layout">
+            <div class="gallery-lightbox-stage" id="gallery-lightbox-stage">
+                <img class="gallery-lightbox-image" id="gallery-lightbox-image" src="" alt="">
+            </div>
+
+            <aside class="gallery-lightbox-detail" id="gallery-lightbox-detail">
+                <span class="gallery-lightbox-detail-label">Project</span>
+                <h3 class="gallery-lightbox-title" id="gallery-lightbox-title"></h3>
+                <span class="gallery-lightbox-detail-label">Category</span>
+                <p class="gallery-lightbox-category" id="gallery-lightbox-category"></p>
+                <span class="gallery-lightbox-detail-label">Software Used</span>
+                <ul class="gallery-lightbox-software" id="gallery-lightbox-software"></ul>
+                <span class="gallery-lightbox-detail-label">Design Story</span>
+                <p class="gallery-lightbox-story" id="gallery-lightbox-story"></p>
+                <div class="gallery-lightbox-tags" id="gallery-lightbox-tags"></div>
+            </aside>
+        </div>
+    </div>
+
+
+    <!-- ============================================
+         CONTACT — CLOSING EXPERIENCE
+         ============================================ -->
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
+        <div class="contact-ambient" aria-hidden="true"></div>
+
+        <div class="s-container">
+            <div class="contact-grid">
+
+                <!-- ─── LEFT: Editorial & Info ─── -->
+                <div class="contact-col contact-col--info">
+                    <span class="section-label fade-up" style="--delay: 0.05s">CONTACT</span>
+
+                    <h2 class="section-heading contact-heading fade-up" style="--delay: 0.1s" id="contact-heading">
+                        Let's Build<br>
+                        Something<br>
+                        <em class="accent">Remarkable</em>.
+                    </h2>
+
+                    <p class="contact-intro fade-up" style="--delay: 0.16s">
+                        Whether you're building a startup, launching a product, creating a brand, or exploring an ambitious idea, I'd love to help transform your vision into a meaningful digital experience.
+                    </p>
+
+                    <blockquote class="contact-quote fade-up" style="--delay: 0.22s">
+                        <span class="contact-quote-mark" aria-hidden="true">"</span>
+                        <p>Great work speaks for itself — but the best collaborations begin with a simple conversation.</p>
+                    </blockquote>
+
+                    <div class="contact-info-cards fade-up" style="--delay: 0.28s">
+                        <div class="contact-info-card">
+                            <div class="contact-info-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <div class="contact-info-body">
+                                <span class="contact-info-label">Phone</span>
+                                <a href="tel:+917710927289" class="contact-info-value">+91 7710927289</a>
+                            </div>
+                            <button type="button" class="contact-copy-btn" data-copy="+91 7710927289" aria-label="Copy phone number">
+                                <svg class="contact-copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                <span class="contact-copy-text">Copy</span>
+                            </button>
+                        </div>
+
+                        <div class="contact-info-card">
+                            <div class="contact-info-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </div>
+                            <div class="contact-info-body">
+                                <span class="contact-info-label">Email</span>
+                                <a href="mailto:starkamir01@gmail.com" class="contact-info-value">starkamir01@gmail.com</a>
+                            </div>
+                            <button type="button" class="contact-copy-btn" data-copy="starkamir01@gmail.com" aria-label="Copy email address">
+                                <svg class="contact-copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                <span class="contact-copy-text">Copy</span>
+                            </button>
+                        </div>
+
+                        <div class="contact-info-card">
+                            <div class="contact-info-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div class="contact-info-body">
+                                <span class="contact-info-label">Location</span>
+                                <span class="contact-info-value">Mumbai, India</span>
+                            </div>
+                            <button type="button" class="contact-copy-btn" data-copy="Mumbai, India" aria-label="Copy location">
+                                <svg class="contact-copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                <span class="contact-copy-text">Copy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="contact-availability fade-up" style="--delay: 0.34s">
+                        <div class="contact-availability-header">
+                            <span class="card-dot card-dot--green" aria-hidden="true"></span>
+                            <span class="contact-availability-status">Available for Freelance</span>
+                        </div>
+                        <p class="contact-availability-reply">Usually replies within 12 hours.</p>
+                        <span class="contact-availability-label">Open for</span>
+                        <ul class="contact-availability-list">
+                            <li>Web Development</li>
+                            <li>UI/UX Design</li>
+                            <li>Branding</li>
+                            <li>AI Projects</li>
+                            <li>Creative Direction</li>
+                        </ul>
+                    </div>
+
+                    <div class="contact-ctas fade-up" style="--delay: 0.4s">
+                        <a href="https://wa.me/917710927289" class="btn contact-whatsapp magnetic-btn" target="_blank" rel="noopener noreferrer">
+                            <svg class="contact-whatsapp-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                            <span>Chat on WhatsApp</span>
+                            <svg class="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 9h10M10 5l4 4-4 4"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="contact-social fade-up" style="--delay: 0.46s">
+                        <span class="contact-social-label">Connect</span>
+                        <div class="contact-social-grid">
+                            <a href="#" class="contact-social-card" target="_blank" rel="noopener noreferrer" aria-label="GitHub — coming soon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            </a>
+                            <a href="#" class="contact-social-card" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn — coming soon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </a>
+                            <a href="#" class="contact-social-card" target="_blank" rel="noopener noreferrer" aria-label="Instagram — coming soon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                            </a>
+                            <a href="#" class="contact-social-card" target="_blank" rel="noopener noreferrer" aria-label="Behance — coming soon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-2.729-5.564-5.88 0-3.257 2.31-5.88 5.53-5.88 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.633 2.269h3.123zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.987h-6.466v-14.67h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 7.764zm-3.466-8.057h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ─── RIGHT: Contact Form ─── -->
+                <div class="contact-col contact-col--form fade-up" style="--delay: 0.2s">
+                    <p class="contact-form-quote" aria-hidden="true">"Every great collaboration starts with hello."</p>
+
+                    <form class="contact-form" id="contact-form" novalidate>
+                        <input type="hidden" name="to_email" value="starkamir01@gmail.com">
+
+                        <div class="contact-field">
+                            <label class="contact-label" for="contact-name">Your Name</label>
+                            <input class="contact-input" type="text" id="contact-name" name="from_name" placeholder="How should I address you?" required autocomplete="name">
+                        </div>
+
+                        <div class="contact-field">
+                            <label class="contact-label" for="contact-email">Email Address</label>
+                            <input class="contact-input" type="email" id="contact-email" name="from_email" placeholder="Where can I reach you?" required autocomplete="email">
+                        </div>
+
+                        <div class="contact-field-row">
+                            <div class="contact-field">
+                                <label class="contact-label" for="contact-type">Project Type</label>
+                                <div class="contact-select-wrap">
+                                    <select class="contact-input contact-select" id="contact-type" name="project_type" required>
+                                        <option value="" disabled selected>Select a type</option>
+                                        <option value="Web Development">Web Development</option>
+                                        <option value="UI/UX">UI/UX</option>
+                                        <option value="Brand Identity">Brand Identity</option>
+                                        <option value="AI Solution">AI Solution</option>
+                                        <option value="Automation">Automation</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <svg class="contact-select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+
+                            <div class="contact-field">
+                                <label class="contact-label" for="contact-budget">Budget</label>
+                                <div class="contact-select-wrap">
+                                    <select class="contact-input contact-select" id="contact-budget" name="budget" required>
+                                        <option value="" disabled selected>Select range</option>
+                                        <option value="Under ₹25,000">Under ₹25,000</option>
+                                        <option value="₹25,000 — ₹75,000">₹25,000 — ₹75,000</option>
+                                        <option value="₹75,000 — ₹2,00,000">₹75,000 — ₹2,00,000</option>
+                                        <option value="₹2,00,000+">₹2,00,000+</option>
+                                        <option value="Let's discuss">Let's discuss</option>
+                                    </select>
+                                    <svg class="contact-select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-field">
+                            <label class="contact-label" for="contact-message">Project Description</label>
+                            <textarea class="contact-input contact-textarea" id="contact-message" name="message" rows="5" placeholder="Tell me about your vision, goals, and timeline..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary contact-submit magnetic-btn" id="contact-submit">
+                            <span class="contact-submit-text">Send Message</span>
+                            <span class="contact-submit-loading" aria-hidden="true">
+                                <svg class="contact-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                                Sending...
+                            </span>
+                            <svg class="btn-arrow contact-submit-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 9h10M10 5l4 4-4 4"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         CINEMATIC DIVIDER — Footer Prelude
+         ============================================ -->
+    <section class="footer-prelude" aria-label="Section transition">
+        <div class="s-container">
+            <div class="footer-prelude-inner fade-up" style="--delay: 0.08s">
+                <span class="footer-prelude-line" aria-hidden="true"></span>
+                <h2 class="footer-prelude-heading">
+                    More Than Projects.<br>
+                    More Than <em class="accent">Pixels</em>.
+                </h2>
+                <p class="footer-prelude-text">Every experience begins with intention.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SIGNATURE FOOTER
+         ============================================ -->
+    <footer class="signature-footer" id="footer">
+        <div class="signature-footer-ambient" aria-hidden="true"></div>
+
+        <div class="s-container signature-footer-inner">
+
+            <!-- Layer 1 — Signature Statement -->
+            <div class="signature-layer signature-layer--statement">
+                <p class="signature-statement fade-up" style="--delay: 0.05s">
+                    Designing with Purpose.<br>
+                    Building with <em class="accent">Precision</em>.
+                </p>
+            </div>
+
+            <!-- Layer 2 — Personal Identity -->
+            <div class="signature-layer signature-layer--identity">
+                <a href="#hero" class="logo signature-logo fade-up magnetic-btn" style="--delay: 0.1s" aria-label="Back to home">
+                    <span class="logo-text">HAMZA</span><span class="logo-dot">.</span>
+                </a>
+                <h2 class="signature-name fade-up" style="--delay: 0.14s">Sayed Amir Hamza Parvez Ahmed</h2>
+                <div class="signature-roles fade-up" style="--delay: 0.18s">
+                    <span class="signature-role" id="footer-role">Creative Technologist</span>
+                </div>
+            </div>
+
+            <!-- Layer 3 — Links & Social -->
+            <div class="signature-layer signature-layer--links">
+                <div class="signature-nav-grid fade-up" style="--delay: 0.1s">
+                    <nav class="signature-nav-group" aria-label="Footer navigation">
+                        <span class="signature-nav-label">Navigation</span>
+                        <ul class="signature-nav-list">
+                            <li><a href="#hero" class="signature-link">Home</a></li>
+                            <li><a href="#about" class="signature-link">About</a></li>
+                            <li><a href="#journey" class="signature-link">Journey</a></li>
+                            <li><a href="#projects" class="signature-link">Projects</a></li>
+                            <li><a href="#selected-works" class="signature-link">Gallery</a></li>
+                            <li><a href="#contact" class="signature-link">Contact</a></li>
+                        </ul>
+                    </nav>
+
+                    <nav class="signature-nav-group" aria-label="Quick links">
+                        <span class="signature-nav-label">Quick Links</span>
+                        <ul class="signature-nav-list">
+                            <li><a href="#" class="signature-link">Resume</a></li>
+                            <li><a href="#" class="signature-link" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                            <li><a href="#" class="signature-link" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                            <li><a href="#" class="signature-link" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="signature-nav-group">
+                        <span class="signature-nav-label">Location</span>
+                        <p class="signature-location">Mumbai, India</p>
+                    </div>
+                </div>
+
+                <div class="signature-social fade-up" style="--delay: 0.16s">
+                    <a href="#" class="signature-social-btn magnetic-btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                    <a href="#" class="signature-social-btn magnetic-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="#" class="signature-social-btn magnetic-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                    </a>
+                    <a href="mailto:starkamir01@gmail.com" class="signature-social-btn magnetic-btn" aria-label="Email">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Currently Exploring Ticker -->
+            <div class="signature-exploring fade-up" style="--delay: 0.12s">
+                <span class="signature-exploring-label">Currently Exploring</span>
+                <div class="signature-ticker" aria-hidden="true">
+                    <div class="signature-ticker-track" id="signature-ticker-track">
+                        <span class="signature-ticker-item">Artificial Intelligence</span>
+                        <span class="signature-ticker-item">Machine Learning</span>
+                        <span class="signature-ticker-item">Three.js</span>
+                        <span class="signature-ticker-item">GSAP</span>
+                        <span class="signature-ticker-item">Creative Development</span>
+                        <span class="signature-ticker-item">Product Design</span>
+                        <span class="signature-ticker-item">Motion Design</span>
+                        <span class="signature-ticker-item">MERN Stack</span>
+                        <span class="signature-ticker-item">Prompt Engineering</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quote -->
+            <blockquote class="signature-quote fade-up" style="--delay: 0.14s">
+                <p>"Curiosity remains my favorite technology."</p>
+            </blockquote>
+
+            <!-- Hidden reward message -->
+            <p class="signature-easter" id="footer-easter" aria-live="polite">Thanks for scrolling this far.</p>
+
+            <!-- Layer 4 — Closing -->
+            <div class="signature-layer signature-layer--closing">
+                <div class="signature-closing-line" aria-hidden="true"></div>
+                <p class="signature-copyright fade-up" style="--delay: 0.1s">
+                    &copy; 2026 Sayed Amir Hamza Parvez Ahmed. Crafted with curiosity, creativity, coffee and countless iterations.
+                </p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- Back to Top — Floating -->
+    <button type="button" class="signature-back-top magnetic-btn" id="back-to-top" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+
+
+    <!-- Toast Notifications -->
+    <div class="contact-toast-container" id="contact-toast-container" aria-live="polite" aria-atomic="true"></div>
+
+
+    <!-- ============================================
          SCROLL INDICATOR
          ============================================ -->
     <div class="scroll-indicator" id="scroll-indicator" aria-hidden="true">
@@ -934,8 +1357,12 @@
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="script.js"></script>
     <script src="about.js"></script>
     <script src="sections.js"></script>
+    <script src="gallery.js"></script>
+    <script src="contact.js"></script>
+    <script src="footer.js"></script>
 </body>
 </html>
