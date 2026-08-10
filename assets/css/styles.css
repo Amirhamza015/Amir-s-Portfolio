@@ -300,6 +300,11 @@ button {
     background: rgba(255, 255, 255, 0.08);
 }
 
+.mobile-nav-link.active {
+    color: var(--accent);
+    background: rgba(214, 166, 107, 0.12);
+}
+
 /* Nav CTA */
 .nav-cta {
     display: inline-flex;
@@ -366,6 +371,10 @@ button {
     transform: rotate(-45deg) translate(4.5px, -4.5px);
 }
 
+
+section[id] {
+    scroll-margin-top: 120px;
+}
 
 /* =====================================================================
    5. MOBILE MENU OVERLAY

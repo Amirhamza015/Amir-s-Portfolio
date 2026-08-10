@@ -19,6 +19,9 @@
     const scrollIndicator   = document.getElementById('scroll-indicator');
     const navCta            = document.getElementById('nav-cta');
     const mobileNavCta      = document.getElementById('mobile-nav-cta');
+    const navLinks          = Array.from(document.querySelectorAll('.nav-link'));
+    const mobileNavLinks    = Array.from(document.querySelectorAll('.mobile-nav-link'));
+    const trackedSections   = ['hero', 'about', 'journey', 'skills', 'projects', 'selected-works'];
 
     let isSmoothScrolling = false;
 
@@ -267,9 +270,67 @@
     }
 
     function clearActiveNavLinks() {
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-        });
+        navLinks.forEach(link => link.classList.remove('active'));
+        mobileNavLinks.forEach(link => link.classList.remove('active'));
+    }
+
+    function setActiveNavLink(activeId) {
+        clearActiveNavLinks();
+
+        const matchingLinks = [
+            ...navLinks.filter(link => (link.getAttribute('href') || '').slice(1) === activeId),
+            ...mobileNavLinks.filter(link => (link.getAttribute('href') || '').slice(1) === activeId)
+        ];
+
+        matchingLinks.forEach(link => link.classList.add('active'));
+    }
+
+    function updateActiveNavLinkFromScroll() {
+        const scrollPosition = window.scrollY + 180;
+        const windowHeight = window.innerHeight;
+        const bodyHeight = document.documentElement.scrollHeight;
+
+        let currentSection = 'hero';
+
+        if (scrollPosition + windowHeight >= bodyHeight - 80) {
+            currentSection = 'contact';
+        } else {
+            for (const sectionId of trackedSections) {
+                const section = document.getElementById(sectionId);
+                if (!section) continue;
+
+                const sectionTop = section.offsetTop - 120;
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    currentSection = sectionId;
+                    break;
+                }
+            }
+        }
+
+        if (currentSection !== 'contact') {
+            setActiveNavLink(currentSection);
+            if (window.location.hash !== `#${currentSection}`) {
+                history.replaceState(null, '', `#${currentSection}`);
+            }
+        } else {
+            clearActiveNavLinks();
+        }
+    }
+
+    function restoreSectionOnLoad() {
+        const hash = window.location.hash;
+        if (hash) {
+            const target = document.querySelector(hash);
+            if (target) {
+                const offset = 100;
+                const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top, behavior: 'auto' });
+            }
+        }
+
+        updateActiveNavLinkFromScroll();
     }
 
     function animateCtaArrow(ctaEl) {
@@ -379,6 +440,7 @@
 
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
+            updateActiveNavLinkFromScroll();
 
             if (scrollY > 80) {
                 navbar.classList.add('scrolled');
@@ -595,6 +657,10 @@
         initButtonArrows();
         initPortraitFallback();
         initScrollIndicator();
+        restoreSectionOnLoad();
+        window.addEventListener('load', () => {
+            setTimeout(restoreSectionOnLoad, 80);
+        }, { once: true });
     });
 
 })();
